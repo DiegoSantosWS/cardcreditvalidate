@@ -66,5 +66,28 @@ func Routers() {
 		}
 	})
 
+	r.HandleFunc("/validate-credit-card/{number}", func(w http.ResponseWriter, r *http.Request) {
+		cod := mux.Vars(r)
+
+		var retornoJS []helpers.Message
+		m := helpers.Message{}
+		if r.Method == "GET" {
+			msg, errs := models.CardValidate(cod["number"])
+			if errs == false {
+				m.Msg = msg
+				m.Err = true
+			} else {
+				m.Msg = msg
+			}
+			retornoJS = append(retornoJS, m)
+
+			retornoJSON, err := json.Marshal(m)
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+			w.Header().Set("Content-Type", "application/json")
+			w.Write(retornoJSON)
+		}
+	})
 	helpers.Runn(r)
 }
