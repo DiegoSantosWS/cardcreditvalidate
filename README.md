@@ -39,5 +39,13 @@ $ curl GET http://172.20.0.2:8000/validate-cnpj/99586878000118
 EM DESENVOLVIMENTO
 
 ```bash
-$ curl GET http://localhost:3000/v1/card-credit-validate/numbercard
+$ curl GET http://localhost:3000/v1/validate-credit-card/numbercard
+```
+
+* Retorno 
+
+```json
+ {
+     msg: "Credit Card is validate"
+ }
 ```
