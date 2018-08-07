@@ -5,9 +5,12 @@ import (
 	"log"
 	"strconv"
 
+	"github.com/asaskevich/govalidator"
+
 	"github.com/DiegoSantosWS/cardcreditvalidate/helpers"
 )
 
+//ValidateCPF validando cpf
 func ValidateCPF(cpf string) (string, error) {
 	doc, err := helpers.NumbersCPF(cpf)
 	if err != nil {
@@ -70,6 +73,7 @@ func ValidateCPF(cpf string) (string, error) {
 	return "Cpf Valído", nil
 }
 
+//ValidateCNPJ validando cnpj
 func ValidateCNPJ(cnpj string) (string, error) {
 	cnpj, err := helpers.NumbersCNPJ(cnpj)
 	if err != nil {
@@ -124,4 +128,12 @@ func ValidateCNPJ(cnpj string) (string, error) {
 	}
 
 	return "CNPJ Valido", nil
+}
+
+//CardValidate validando cartão de credito
+func CardValidate(card string) (string, bool) {
+	if valid := govalidator.IsCreditCard(card); valid == false {
+		return "Credit Card invalid.", false
+	}
+	return "Credit Card is valid", true
 }
