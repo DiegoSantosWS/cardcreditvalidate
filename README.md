@@ -18,10 +18,10 @@ $ cd cardcreditvalidate/
 cardcreditvalidate$ sudo docker build .
 ```
 
-* DOCKER COMPOSER
+* DOCKER COMPOSE
 
 ```bash
-cardcreditvalidate$ sudo docker-composer up .
+cardcreditvalidate$ sudo docker-compose up .
 ```
 
 Validando CPF com retorno da api é json
