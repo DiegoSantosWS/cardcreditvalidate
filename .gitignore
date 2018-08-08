@@ -1,3 +1,5 @@
 *.lock
 *.toml
 vendor/
+*.yml
+*.old
