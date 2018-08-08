@@ -3,7 +3,6 @@ LABEL maintainer="diegosantosws1@gmail.com"
 WORKDIR /go/src/github.com/DiegoSantosWS/cardcreditvalidate
 COPY . .
 
-#RUN apk --no-cache add git
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
 FROM alpine:latest
