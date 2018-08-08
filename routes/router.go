@@ -72,13 +72,21 @@ func Routers() {
 		var retornoJS []helpers.Message
 		m := helpers.Message{}
 		if r.Method == "GET" {
-			msg, errs := models.CardValidate(cod["number"])
-			if errs == false {
-				m.Msg = msg
+			valid := models.CardValidate(cod["number"])
+			if valid == false {
+				m.Msg = "the number credit card don't valid"
 				m.Err = true
 			} else {
-				m.Msg = msg
+				company, errs := helpers.ReturningTypeCreditCard(cod["number"])
+				if errs != nil {
+					m.Msg = "[ERROR] the company of the credit card not found"
+					m.Err = true
+				}
+				m.Msg = "Credit card validate"
+				m.Err = false
+				m.Comp = company
 			}
+
 			retornoJS = append(retornoJS, m)
 
 			retornoJSON, err := json.Marshal(m)
