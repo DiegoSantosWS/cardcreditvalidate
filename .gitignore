@@ -2,4 +2,3 @@
 *.toml
 vendor/
 *.yml
-*.old
