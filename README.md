@@ -36,16 +36,45 @@ Validando CNPJ com retorno da api é json
 $ curl GET http://172.20.0.2:8000/validate-cnpj/99586878000118
 ```
 
-EM DESENVOLVIMENTO
+EM DESENVOLVIMENTO...
 
 ```bash
 $ curl GET http://localhost:3000/v1/validate-credit-card/numbercard
 ```
 
-* Retorno 
+* Retorno com sucesso
 
 ```json
  {
-     msg: "Credit Card is validate"
+    msg: "Credit Card is validate",
+    Comp: {
+        Short: "visa",
+        Long: "Visa"
+    }
+ }
+```
+
+* Retorno invalido (caso não encontre informação da bandeira)
+
+```json
+ {
+    msg: "Credit Card is validate",
+    Comp: {
+        Short: "",
+        Long: ""
+    }
+ }
+```
+
+* Retorno invalido para numero do cartão
+
+```json
+ {
+    msg: "the number credit card don't valid",
+    err: true,
+    Comp: {
+        Short: "",
+        Long: ""
+    }
  }
 ```
