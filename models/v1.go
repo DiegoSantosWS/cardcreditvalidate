@@ -131,9 +131,9 @@ func ValidateCNPJ(cnpj string) (string, error) {
 }
 
 //CardValidate validando cartão de credito
-func CardValidate(card string) (string, bool) {
+func CardValidate(card string) bool {
 	if valid := govalidator.IsCreditCard(card); valid == false {
-		return "Credit Card invalid.", false
+		return false
 	}
-	return "Credit Card is valid", true
+	return true
 }
